@@ -16,12 +16,15 @@ function WeatherApp({ token }) {
     setLoading(true);
     setError("");
     try {
-      const response = await axios.get("http://localhost:5000/api/weather", {
-        params: { q: city },
-        headers: {
-          Authorization: `Bearer ${token}`, // Assuming you have a token for authentication
-        },
-      });
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/api/weather`,
+        {
+          params: { q: city },
+          headers: {
+            Authorization: `Bearer ${token}`, // Assuming you have a token for authentication
+          },
+        }
+      );
       console.log("token", token);
       setWeather(response.data);
     } catch (err) {
